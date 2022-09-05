@@ -1,0 +1,25 @@
+const pipe = [{
+    $facet:
+    {
+        "INTRANSIT": [
+            { $match: { Status: { $in: [ "intransit", "at hub", "out for delivery"] } } },
+            { $group:  { _id: "$Date", allOrders: { $sum: 1 } } }
+        ]
+    },
+
+    {
+        "RTO": [
+            { $match: { Status: { $in: [ "RTO Intransit", "RTO Delivered" ] } } },
+            { $group:  { _id: "$Date", allOrders: { $sum: 1 } } }
+        ]
+    },
+
+    {
+        "PROCESSING": [
+            { $match: { Status: { $in: [ "processing" ] } } },
+            { $group:  { _id: date.getMonth("$Date"), allOrders: { $sum: 1 } } }
+        ]
+    },
+}]
+
+const aggregator = collection.aggregate(pipe)
