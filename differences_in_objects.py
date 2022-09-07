@@ -1,3 +1,28 @@
+# Write a function that tells the differences between 2 objects’ data.
+# I.e, for 2 objects, find out what values changed and what exactly was changed.
+# Format :
+# Object A : { someKey : “someValue”},
+# Object B : {someKey : “someAltValue” }
+
+# Output : someKey changed from someValue to someAltValue
+
+# P.S. This json object can have any level of nesting. We have to go as deep as needed to compare the keys.
+
+
+
+
+# a={ 
+#   B: "someValue"
+#    }
+
+
+
+# d={ 
+#   B:{  c:someAtValue
+#      }
+#    }
+
+
 from collections.abc import MutableMapping
 
 def flatten_dict(input_dict, parent_key = '', seperator = '.'):
